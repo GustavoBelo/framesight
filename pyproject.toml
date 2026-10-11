@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "framesight"
+version = "0.1.0"
+description = "Faces, head pose, mouth openness, upper bodies and person masks from video, as JSON. CPU only, no AVX2 needed."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Gustavo Belo" }]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "opencv-python-headless>=4.8",
+    "onnxruntime>=1.16",
+]
+
+[project.optional-dependencies]
+heif = ["pillow>=10", "pillow-heif>=0.16"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+framesight = "framesight.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
